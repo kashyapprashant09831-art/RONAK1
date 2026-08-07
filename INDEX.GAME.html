@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RonakWebHub | AI-Powered Web Development & Digital Experience Studio</title>
+    <meta name="description" content="RonakWebHub transforms ideas into powerful digital experiences through advanced technology, creative design, and future-ready solutions.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        spaceBlack: '#020617',
+                        midnightNavy: '#0B1120',
+                        electricBlue: '#00E5FF',
+                        neonPurple: '#8B5CF6',
+                        pureWhite: '#FFFFFF',
+                        glassDark: 'rgba(11, 17, 32, 0.75)',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 25px rgba(0, 229, 255, 0.35)',
+                        'neon-purple': '0 0 25px rgba(139, 92, 246, 0.35)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Global Futuristic Styles -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6, .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(11, 17, 32, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 229, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+        }
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0B1120;
+            border: 1px solid #00E5FF;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00E5FF;
+        }
+    </style>
+</head>
+<body class="cyber-grid text-pureWhite antialiased selection:bg-electricBlue selection:text-spaceBlack">
+
+    <!-- CINEMATIC LOADING SCREEN -->
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-spaceBlack transition-opacity duration-1000">
+        <div class="relative w-24 h-24 mb-6">
+            <div class="absolute inset-0 border-4 border-electricBlue/20 rounded-full animate-ping"></div>
+            <div class="absolute inset-0 border-4 border-t-electricBlue border-r-transparent border-b-neonPurple border-l-transparent rounded-full animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center font-orbitron font-bold text-electricBlue text-xl">RWH</div>
+        </div>
+        <div class="font-orbitron tracking-widest text-electricBlue text-sm animate-pulse">INITIALIZING RONAKWEBHUB NEXUS...</div>
+        <div class="w-48 h-1 bg-midnightNavy mt-4 rounded-full overflow-hidden">
+            <div id="loader-bar" class="h-full bg-gradient-to-r from-electricBlue to-neonPurple w-0 transition-all duration-700"></div>
+        </div>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor-dot" class="fixed top-0 left-0 w-3 h-3 bg-electricBlue rounded-full pointer-events-none z-50 transition-transform duration-75 hidden md:block shadow-neon"></div>
+    <div id="cursor-ring" class="fixed top-0 left-0 w-10 h-10 border border-electricBlue/50 rounded-full pointer-events-none z-50 transition-all duration-150 hidden md:block"></div>
+
+    <!-- FLOATING FUTURISTIC NAVBAR -->
+    <header class="fixed top-4 left-0 right-0 z-40 max-w-7xl mx-auto px-4">
+        <nav class="glass-panel rounded-2xl px-6 py-4 flex items-center justify-between shadow-glass">
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-neonPurple p-0.5 flex items-center justify-center shadow-neon group-hover:rotate-180 transition-transform duration-500">
+                    <div class="w-full h-full bg-spaceBlack rounded-[10px] flex items-center justify-center">
+                        <span class="font-orbitron font-black text-electricBlue text-lg">R</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-orbitron font-extrabold tracking-wider text-lg bg-gradient-to-r from-pureWhite via-electricBlue to-neonPurple bg-clip-text text-transparent">RONAKWEBHUB</span>
+                    <span class="text-[9px] tracking-widest text-electricBlue/70 uppercase">Ronakwebhub Studio </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#home" class="text-sm font-medium hover:text-electricBlue transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-electricBlue hover:after:w-full after:transition-all">Home</a>
+                <a href="#about" class="text-sm font-medium hover:text-electricBlue transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-electricBlue hover:after:w-full after:transition-all">About</a>
+                <a href="#services" class="text-sm font-medium hover:text-electricBlue transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-electricBlue hover:after:w-full after:transition-all">Services</a>
+                <a href="#portfolio" class="text-sm font-medium hover:text-electricBlue transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-electricBlue hover:after:w-full after:transition-all">Portfolio</a>
+                <a href="#blog" class="text-sm font-medium hover:text-electricBlue transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-electricBlue hover:after:w-full after:transition-all">Blog</a>
+                <a href="#contact" class="text-sm font-medium hover:text-electricBlue transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-electricBlue hover:after:w-full after:transition-all">Contact</a>
+            </div>
+
+            <!-- Action Button -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="#contact" class="relative group overflow-hidden rounded-xl px-5 py-2.5 font-orbitron text-xs font-bold text-spaceBlack bg-electricBlue transition-all duration-300 shadow-neon hover:shadow-[0_0_35px_rgba(0,229,255,0.7)]">
+                    <span class="relative z-10">INITIALIZE CONTACT</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-neonPurple to-electricBlue opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="lg:hidden text-electricBlue focus:outline-none text-2xl p-2">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-spaceBlack/95 backdrop-blur-2xl flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300 lg:hidden">
+        <button id="close-menu" class="absolute top-8 right-8 text-electricBlue text-3xl p-2">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="#home" class="mobile-link font-orbitron text-2xl font-bold hover:text-electricBlue transition-colors">Home</a>
+        <a href="#about" class="mobile-link font-orbitron text-2xl font-bold hover:text-electricBlue transition-colors">About</a>
+        <a href="#services" class="mobile-link font-orbitron text-2xl font-bold hover:text-electricBlue transition-colors">Services</a>
+        <a href="#portfolio" class="mobile-link font-orbitron text-2xl font-bold hover:text-electricBlue transition-colors">Portfolio</a>
+        <a href="#blog" class="mobile-link font-orbitron text-2xl font-bold hover:text-electricBlue transition-colors">Blog</a>
+        <a href="#contact" class="mobile-link font-orbitron text-2xl font-bold hover:text-electricBlue transition-colors">Contact</a>
+        <a href="#contact" class="mobile-link mt-4 px-8 py-3 bg-electricBlue text-spaceBlack font-orbitron font-bold rounded-xl shadow-neon">INITIALIZE CONTACT</a>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10">
+
+        <!-- PAGE 1: FUTURISTIC HOME EXPERIENCE -->
+        <section id="home" class="relative min-h-screen flex items-center pt-32 pb-20 px-4 overflow-hidden">
+            <!-- Background Glow Elements -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electricBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-neonPurple/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel border border-electricBlue/30 text-electricBlue text-xs font-orbitron tracking-widest shadow-neon">
+                        <span class="w-2 h-2 rounded-full bg-electricBlue animate-ping"></span>
+                        <span>Ronakwebhub-POWERED DIGITAL STUDIO</span>
+                    </div>
+
+                    <h1 class="font-orbitron font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
+                        Building Modern <span class="bg-gradient-to-r from-electricBlue via-neonPurple to-pureWhite bg-clip-text text-transparent">Websites</span> & Digital Experiences
+                    </h1>
+
+                    <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        RonakWebHub transforms ideas into powerful digital experiences through advanced technology, creative design, and future-ready solutions.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl font-orbitron font-bold text-sm bg-electricBlue text-spaceBlack shadow-neon hover:shadow-[0_0_40px_rgba(0,229,255,0.8)] transition-all duration-300 text-center">
+                            Hire Me <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-xl font-orbitron font-bold text-sm glass-panel text-pureWhite hover:border-electricBlue transition-all duration-300 text-center">
+                            Explore Projects <i class="fa-solid fa-code ml-2 text-electricBlue"></i>
+                        </a>
+                    </div>
+
+                    <!-- AI Interface Prompt Box -->
+                    <div class="glass-panel p-4 rounded-2xl border border-electricBlue/20 max-w-lg mx-auto lg:mx-0 text-left relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-24 h-24 bg-electricBlue/10 rounded-full blur-xl"></div>
+                        <div class="flex items-center space-x-3 mb-2">
+                            <div class="w-3 h-3 rounded-full bg-electricBlue animate-pulse"></div>
+                            <span class="font-orbitron text-xs text-electricBlue tracking-wider">RWH AI ASSISTANT </span>
+                        </div>
+                        <p class="text-sm font-mono text-gray-300">"Ready to build your next digital experience? Initiate system handshake below."</p>
+                    </div>
+                </div>
+
+                <!-- Hero Right Visual: 3D Holographic Setup & Skills Orbit -->
+                <div class="lg:col-span-5 relative flex items-center justify-center">
+                    <div class="relative w-full max-w-md aspect-square flex items-center justify-center">
+                        <!-- Holographic Center Orb -->
+                        <div class="absolute w-64 h-64 rounded-full bg-gradient-to-br from-electricBlue/30 to-neonPurple/30 blur-2xl animate-pulse-slow"></div>
+                        
+                        <!-- Floating Holographic Laptop / Core Container -->
+                        <div class="relative z-20 glass-panel w-full p-6 rounded-3xl border border-electricBlue/40 shadow-neon transform hover:scale-105 transition-transform duration-500">
+                            <div class="flex items-center justify-between pb-4 border-b border-electricBlue/20 mb-4">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <span class="font-mono text-xs text-electricBlue">ronakwebhub</span>
+                            </div>
+                            <div class="space-y-3 font-mono text-xs text-gray-300">
+                                <p class="text-electricBlue">&gt; Initializing neural network...</p>
+                                <p>&gt; Loading React / Next.js modules...</p>
+                                <p class="text-neonPurple">&gt; AI Design Engine: ACTIVE</p>
+                                <div class="p-3 bg-spaceBlack/80 rounded-xl border border-electricBlue/20 mt-2">
+                                    <span class="text-white font-bold">Status:</span> 100% Optimized for 2030 Standards.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Orbiting Skill Badges -->
+                        <div class="absolute inset-0 pointer-events-none animate-spin-slow">
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 px-3 py-1 rounded-full glass-panel text-[10px] font-orbitron text-electricBlue shadow-neon">React</div>
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4 px-3 py-1 rounded-full glass-panel text-[10px] font-orbitron text-neonPurple shadow-neon-purple">UI/UX</div>
+                            <div class="absolute left-0 top-1/2 -translate-x-4 -translate-y-1/2 px-3 py-1 rounded-full glass-panel text-[10px] font-orbitron text-electricBlue shadow-neon">WordPress</div>
+                            <div class="absolute right-0 top-1/2 translate-x-4 -translate-y-1/2 px-3 py-1 rounded-full glass-panel text-[10px] font-orbitron text-neonPurple shadow-neon-purple">AI Solutions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Section -->
+            <div class="absolute bottom-4 left-0 right-0 text-center hidden md:block">
+                <p class="text-xs uppercase font-orbitron tracking-widest text-gray-400 mb-2">Creating Digital Experiences For Modern Businesses</p>
+                <div class="flex justify-center items-center space-x-8 text-gray-500 text-sm font-semibold">
+                    <span class="hover:text-electricBlue transition-colors">#NEXTGENWEB</span>
+                    <span>•</span>
+                    <span class="hover:text-electricBlue transition-colors">#FUTURETECH</span>
+                    <span>•</span>
+                    <span class="hover:text-electricBlue transition-colors">#RONAKWEBHUB</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: ABOUT RONAKWEBHUB -->
+        <section id="about" class="py-28 px-4 relative">
+            <div class="max-w-7xl mx-auto space-y-20">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-electricBlue font-orbitron text-xs tracking-widest uppercase">SYSTEM PROFILE</span>
+                    <h2 class="font-orbitron font-black text-3xl sm:text-4xl lg:text-5xl">Behind The Digital Innovation</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">RonakWebHub is a future-focused web development and digital solutions studio creating premium websites, intelligent interfaces, and scalable digital products.</p>
+                </div>
+
+                <!-- Mission & Vision Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-electricBlue/10 rounded-full blur-2xl group-hover:bg-electricBlue/20 transition-all"></div>
+                        <div class="w-12 h-12 rounded-2xl bg-electricBlue/10 flex items-center justify-center text-electricBlue text-xl mb-6 shadow-neon">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-4 text-white">Our Mission</h3>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">"To empower businesses with innovative digital experiences powered by creativity and technology."</p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-neonPurple/10 rounded-full blur-2xl group-hover:bg-neonPurple/20 transition-all"></div>
+                        <div class="w-12 h-12 rounded-2xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-xl mb-6 shadow-neon-purple">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-4 text-white">Our Vision</h3>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">"To become a globally recognized digital innovation partner delivering next-gen web ecosystems."</p>
+                    </div>
+                </div>
+
+                <!-- Holographic Statistics -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-electricBlue/20 hover:border-electricBlue transition-all">
+                        <div class="font-orbitron font-black text-3xl sm:text-4xl text-electricBlue mb-2">150+</div>
+                        <div class="text-xs uppercase font-semibold text-gray-400 tracking-wider">Projects Completed</div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-electricBlue/20 hover:border-electricBlue transition-all">
+                        <div class="font-orbitron font-black text-3xl sm:text-4xl text-neonPurple mb-2">99%</div>
+                        <div class="text-xs uppercase font-semibold text-gray-400 tracking-wider">Happy Clients</div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-electricBlue/20 hover:border-electricBlue transition-all">
+                        <div class="font-orbitron font-black text-3xl sm:text-4xl text-electricBlue mb-2">25+</div>
+                        <div class="text-xs uppercase font-semibold text-gray-400 tracking-wider">Technologies Mastered</div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-electricBlue/20 hover:border-electricBlue transition-all">
+                        <div class="font-orbitron font-black text-3xl sm:text-4xl text-neonPurple mb-2">5+</div>
+                        <div class="text-xs uppercase font-semibold text-gray-400 tracking-wider">Years Experience</div>
+                    </div>
+                </div>
+
+                <!-- Futuristic Timeline -->
+                <div class="space-y-8">
+                    <div class="text-center">
+                        <h3 class="font-orbitron font-bold text-2xl">Execution Roadmap</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+                        <div class="glass-panel p-6 rounded-2xl border border-electricBlue/20 text-center relative group hover:scale-105 transition-transform">
+                            <span class="font-orbitron text-electricBlue font-bold text-lg block mb-2">01</span>
+                            <h4 class="font-orbitron font-bold text-sm mb-2">Discovery & Strategy</h4>
+                            <p class="text-xs text-gray-400">Analyzing requirements and charting the digital blueprint.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border border-electricBlue/20 text-center relative group hover:scale-105 transition-transform">
+                            <span class="font-orbitron text-electricBlue font-bold text-lg block mb-2">02</span>
+                            <h4 class="font-orbitron font-bold text-sm mb-2">Creative UI/UX Design</h4>
+                            <p class="text-xs text-gray-400">Crafting futuristic interfaces and immersive layouts.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border border-electricBlue/20 text-center relative group hover:scale-105 transition-transform">
+                            <span class="font-orbitron text-electricBlue font-bold text-lg block mb-2">03</span>
+                            <h4 class="font-orbitron font-bold text-sm mb-2">Advanced Development</h4>
+                            <p class="text-xs text-gray-400">Building robust code with modern frameworks and AI tools.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border border-electricBlue/20 text-center relative group hover:scale-105 transition-transform">
+                            <span class="font-orbitron text-electricBlue font-bold text-lg block mb-2">04</span>
+                            <h4 class="font-orbitron font-bold text-sm mb-2">Performance Optimization</h4>
+                            <p class="text-xs text-gray-400">Ensuring lightning-fast loading speeds and secure architecture.</p>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl border border-electricBlue/20 text-center relative group hover:scale-105 transition-transform">
+                            <span class="font-orbitron text-electricBlue font-bold text-lg block mb-2">05</span>
+                            <h4 class="font-orbitron font-bold text-sm mb-2">Launch & Growth</h4>
+                            <p class="text-xs text-gray-400">Deploying live and scaling digital presence globally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: FUTURE SERVICES LAB -->
+        <section id="services" class="py-28 px-4 bg-midnightNavy/40 relative">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-electricBlue font-orbitron text-xs tracking-widest uppercase">TECHNOLOGY MODULES</span>
+                    <h2 class="font-orbitron font-black text-3xl sm:text-4xl lg:text-5xl">Future Services Lab</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Engineered with cutting-edge tech stacks to elevate your brand into the next decade.</p>
+                </div>
+
+                <!-- Services Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Module 01 -->
+                    <div class="glass-panel p-8 rounded-3xl relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-electricBlue/10 flex items-center justify-center text-electricBlue text-2xl shadow-neon group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <span class="font-orbitron text-electricBlue text-xs font-bold tracking-widest">MOD-01</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-3 text-white">Website Development Core</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">High-performance modern websites built with advanced technologies, secure backends, and responsive layouts.</p>
+                        <div class="pt-4 border-t border-electricBlue/20 flex items-center justify-between text-xs font-mono text-electricBlue">
+                            <span>STACK: REACT / NEXT.JS</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 02 -->
+                    <div class="glass-panel p-8 rounded-3xl relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-2xl shadow-neon-purple group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <span class="font-orbitron text-neonPurple text-xs font-bold tracking-widest">MOD-02</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-3 text-white">UI/UX Experience Lab</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">Beautiful interfaces designed for human-centered experiences, holographic aesthetics, and intuitive user journeys.</p>
+                        <div class="pt-4 border-t border-electricBlue/20 flex items-center justify-between text-xs font-mono text-electricBlue">
+                            <span>STACK: FIGMA / HUD UI</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 03 -->
+                    <div class="glass-panel p-8 rounded-3xl relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-electricBlue/10 flex items-center justify-center text-electricBlue text-2xl shadow-neon group-hover:rotate-12 transition-transform">
+                                <i class="fa-brands fa-wordpress"></i>
+                            </div>
+                            <span class="font-orbitron text-electricBlue text-xs font-bold tracking-widest">MOD-03</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-3 text-white">WordPress Innovation System</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">Custom WordPress solutions for powerful business websites with custom plugins, speed optimization, and secure dashboards.</p>
+                        <div class="pt-4 border-t border-electricBlue/20 flex items-center justify-between text-xs font-mono text-electricBlue">
+                            <span>STACK: PHP / MYSQL / WP</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 04 -->
+                    <div class="glass-panel p-8 rounded-3xl relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-2xl shadow-neon-purple group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <span class="font-orbitron text-neonPurple text-xs font-bold tracking-widest">MOD-04</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-3 text-white">E-commerce Growth Engine</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">Future-ready online stores designed for high conversions, lightning checkout, and seamless payment gateway integrations.</p>
+                        <div class="pt-4 border-t border-electricBlue/20 flex items-center justify-between text-xs font-mono text-electricBlue">
+                            <span>STACK: WOOCOMMERCE / SHOPIFY</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 05 -->
+                    <div class="glass-panel p-8 rounded-3xl relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-electricBlue/10 flex items-center justify-center text-electricBlue text-2xl shadow-neon group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <span class="font-orbitron text-electricBlue text-xs font-bold tracking-widest">MOD-05</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-3 text-white">Website Maintenance System</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">Military-grade security, continuous updates, real-time monitoring, and proactive performance optimization.</p>
+                        <div class="pt-4 border-t border-electricBlue/20 flex items-center justify-between text-xs font-mono text-electricBlue">
+                            <span>STACK: 24/7 AI MONITORING</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 06 -->
+                    <div class="glass-panel p-8 rounded-3xl relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-2xl shadow-neon-purple group-hover:rotate-12 transition-transform">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <span class="font-orbitron text-neonPurple text-xs font-bold tracking-widest">MOD-06</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl mb-3 text-white">SEO Digital Growth Engine</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">Advanced algorithmic strategies for maximum online visibility, search dominance, and targeted organic traffic.</p>
+                        <div class="pt-4 border-t border-electricBlue/20 flex items-center justify-between text-xs font-mono text-electricBlue">
+                            <span>STACK: ORGANIC RANKING</span>
+                            <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: PORTFOLIO / DIGITAL EXPERIENCE LAB -->
+        <section id="portfolio" class="py-28 px-4 relative">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-electricBlue font-orbitron text-xs tracking-widest uppercase">CASE STUDIES</span>
+                    <h2 class="font-orbitron font-black text-3xl sm:text-4xl lg:text-5xl">Digital Experience Laboratory</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Explore our latest high-impact projects built for visionary brands and modern enterprises.</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <button class="px-5 py-2 rounded-xl font-orbitron text-xs bg-electricBlue text-spaceBlack font-bold shadow-neon">All</button>
+                    <button class="px-5 py-2 rounded-xl font-orbitron text-xs glass-panel text-gray-300 hover:text-electricBlue hover:border-electricBlue transition-all">Web Applications</button>
+                    <button class="px-5 py-2 rounded-xl font-orbitron text-xs glass-panel text-gray-300 hover:text-electricBlue hover:border-electricBlue transition-all">Business Websites</button>
+                    <button class="px-5 py-2 rounded-xl font-orbitron text-xs glass-panel text-gray-300 hover:text-electricBlue hover:border-electricBlue transition-all">E-commerce</button>
+                    <button class="px-5 py-2 rounded-xl font-orbitron text-xs glass-panel text-gray-300 hover:text-electricBlue hover:border-electricBlue transition-all">WordPress</button>
+                    <button class="px-5 py-2 rounded-xl font-orbitron text-xs glass-panel text-gray-300 hover:text-electricBlue hover:border-electricBlue transition-all">UI/UX</button>
+                </div>
+
+                <!-- Projects Showcase Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="glass-panel p-8 rounded-3xl border border-electricBlue/20 space-y-6 group hover:border-electricBlue transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-electricBlue/10 text-electricBlue text-xs font-orbitron">Web Applications</span>
+                            <span class="font-mono text-xs text-gray-400">PROJECT // 01</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-2xl text-white group-hover:text-electricBlue transition-colors">Nexus AI Dashboard</h3>
+                        <div class="space-y-3 text-sm text-gray-300">
+                            <p><strong class="text-white">Client Goal:</strong> Build a high-speed AI management platform with real-time data streaming.</p>
+                            <p><strong class="text-white">Creative Solution:</strong> Implemented interactive holographic UI with React and WebGL graphs.</p>
+                            <p><strong class="text-white">Technology Stack:</strong> React, Next.js, Tailwind CSS, AI Tools</p>
+                            <p><strong class="text-white">Final Result:</strong> 300% boost in user engagement and sub-second latency.</p>
+                        </div>
+                        <div class="flex items-center space-x-4 pt-4 border-t border-electricBlue/20">
+                            <a href="#contact" class="px-5 py-2.5 rounded-xl bg-electricBlue text-spaceBlack font-orbitron font-bold text-xs shadow-neon flex items-center space-x-2">
+                                <span>Live Experience</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <a href="#contact" class="px-5 py-2.5 rounded-xl glass-panel text-pureWhite font-orbitron font-bold text-xs hover:border-electricBlue flex items-center space-x-2">
+                                <span>GitHub Source</span> <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="glass-panel p-8 rounded-3xl border border-neonPurple/20 space-y-6 group hover:border-neonPurple transition-all">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-neonPurple/10 text-neonPurple text-xs font-orbitron">E-commerce</span>
+                            <span class="font-mono text-xs text-gray-400">PROJECT // 02</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-2xl text-white group-hover:text-neonPurple transition-colors">Cyberwear Global Store</h3>
+                        <div class="space-y-3 text-sm text-gray-300">
+                            <p><strong class="text-white">Client Goal:</strong> Create an immersive cyberpunk apparel store with high conversion rates.</p>
+                            <p><strong class="text-white">Creative Solution:</strong> Designed custom WooCommerce checkout flow with 3D product preview.</p>
+                            <p><strong class="text-white">Technology Stack:</strong> WordPress, PHP, MySQL, JavaScript</p>
+                            <p><strong class="text-white">Final Result:</strong> $1M+ in sales generated within the first quarter of deployment.</p>
+                        </div>
+                        <div class="flex items-center space-x-4 pt-4 border-t border-neonPurple/20">
+                            <a href="#contact" class="px-5 py-2.5 rounded-xl bg-neonPurple text-spaceBlack font-orbitron font-bold text-xs shadow-neon-purple flex items-center space-x-2">
+                                <span>Live Experience</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <a href="#contact" class="px-5 py-2.5 rounded-xl glass-panel text-pureWhite font-orbitron font-bold text-xs hover:border-neonPurple flex items-center space-x-2">
+                                <span>GitHub Source</span> <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: FUTURE TECH BLOG -->
+        <section id="blog" class="py-28 px-4 bg-midnightNavy/40 relative">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-electricBlue font-orbitron text-xs tracking-widest uppercase">KNOWLEDGE NEXUS</span>
+                    <h2 class="font-orbitron font-black text-3xl sm:text-4xl lg:text-5xl">RonakWebHub Future Journal</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Insights, tutorials, and visionary articles on AI web development and digital trends.</p>
+                </div>
+
+                <!-- Search & Categories Bar -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 glass-panel p-4 rounded-2xl border border-electricBlue/20">
+                    <div class="relative w-full md:w-80">
+                        <input type="text" placeholder="Search future articles..." class="w-full bg-spaceBlack/80 border border-electricBlue/30 rounded-xl px-4 py-2.5 text-sm text-pureWhite focus:outline-none focus:border-electricBlue font-mono">
+                        <i class="fa-solid fa-magnifying-glass absolute right-4 top-3.5 text-electricBlue"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-xs font-orbitron">
+                        <span class="px-3 py-1.5 rounded-lg bg-electricBlue/10 text-electricBlue border border-electricBlue/30">AI & Web</span>
+                        <span class="px-3 py-1.5 rounded-lg glass-panel text-gray-300">Future Tech</span>
+                        <span class="px-3 py-1.5 rounded-lg glass-panel text-gray-300">UI/UX</span>
+                        <span class="px-3 py-1.5 rounded-lg glass-panel text-gray-300">SEO</span>
+                    </div>
+                </div>
+
+                <!-- Blog Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article class="glass-panel p-6 rounded-3xl border border-electricBlue/20 space-y-4 group hover:border-electricBlue transition-all">
+                        <div class="w-full h-48 rounded-2xl bg-gradient-to-br from-electricBlue/20 to-neonPurple/20 flex items-center justify-center font-orbitron text-electricBlue font-bold">
+                            ARTICLE // 01
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-mono text-gray-400">
+                            <span>AI & Web Dev</span>
+                            <span>June 2026</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl group-hover:text-electricBlue transition-colors">How AI Agents Are Redefining Full-Stack Web Development</h3>
+                        <p class="text-gray-300 text-sm">Discover how artificial intelligence is automating code generation, testing, and deployment pipelines in 2026.</p>
+                        <a href="#contact" class="inline-flex items-center space-x-2 text-electricBlue font-orbitron text-xs font-bold pt-2">
+                            <span>Read Transmission</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="glass-panel p-6 rounded-3xl border border-neonPurple/20 space-y-4 group hover:border-neonPurple transition-all">
+                        <div class="w-full h-48 rounded-2xl bg-gradient-to-br from-neonPurple/20 to-electricBlue/20 flex items-center justify-center font-orbitron text-neonPurple font-bold">
+                            ARTICLE // 02
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-mono text-gray-400">
+                            <span>UI/UX Innovation</span>
+                            <span>May 2026</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl group-hover:text-neonPurple transition-colors">The Rise of Holographic Glassmorphism in Modern Interfaces</h3>
+                        <p class="text-gray-300 text-sm">Exploring depth-based animations, neon lighting, and sci-fi HUD elements in premium web design.</p>
+                        <a href="#contact" class="inline-flex items-center space-x-2 text-neonPurple font-orbitron text-xs font-bold pt-2">
+                            <span>Read Transmission</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="glass-panel p-6 rounded-3xl border border-electricBlue/20 space-y-4 group hover:border-electricBlue transition-all">
+                        <div class="w-full h-48 rounded-2xl bg-gradient-to-br from-electricBlue/20 to-midnightNavy flex items-center justify-center font-orbitron text-electricBlue font-bold">
+                            ARTICLE // 03
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-mono text-gray-400">
+                            <span>SEO Evolution</span>
+                            <span>May 2026</span>
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl group-hover:text-electricBlue transition-colors">Algorithmic SEO: Ranking in the Age of AI Search Engines</h3>
+                        <p class="text-gray-300 text-sm">How to optimize your website architecture for semantic search, neural indexing, and voice queries.</p>
+                        <a href="#contact" class="inline-flex items-center space-x-2 text-electricBlue font-orbitron text-xs font-bold pt-2">
+                            <span>Read Transmission</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: DIGITAL COMMAND CENTER CONTACT -->
+        <section id="contact" class="py-28 px-4 relative">
+            <div class="max-w-7xl mx-auto space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-4">
+                    <span class="text-electricBlue font-orbitron text-xs tracking-widest uppercase">COMMUNICATION PORT</span>
+                    <h2 class="font-orbitron font-black text-3xl sm:text-4xl lg:text-5xl">Let's Create The Future Together</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Initiate a secure connection with RonakWebHub and turn your vision into a digital masterpiece.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl border border-electricBlue/30 shadow-neon">
+                        <form class="space-y-6" onsubmit="event.preventDefault(); alert('Transmission Successful! RonakWebHub AI has received your message.');">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="font-orbitron text-xs text-electricBlue">FULL NAME</label>
+                                    <input type="text" required placeholder="Ronak kashyap" class="w-full bg-spaceBlack/80 border border-electricBlue/30 rounded-xl px-4 py-3 text-sm text-pureWhite focus:outline-none focus:border-electricBlue">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="font-orbitron text-xs text-electricBlue">EMAIL ADDRESS</label>
+                                    <input type="email" required placeholder="ronak@ronakwebhub.com" class="w-full bg-spaceBlack/80 border border-electricBlue/30 rounded-xl px-4 py-3 text-sm text-pureWhite focus:outline-none focus:border-electricBlue">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="font-orbitron text-xs text-electricBlue">PHONE NUMBER</label>
+                                    <input type="tel" placeholder="+91 XXXXXXXXXX" class="w-full bg-spaceBlack/80 border border-electricBlue/30 rounded-xl px-4 py-3 text-sm text-pureWhite focus:outline-none focus:border-electricBlue">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="font-orbitron text-xs text-electricBlue">SERVICE REQUIRED</label>
+                                    <select class="w-full bg-spaceBlack/80 border border-electricBlue/30 rounded-xl px-4 py-3 text-sm text-pureWhite focus:outline-none focus:border-electricBlue">
+                                        <option>Website Development Core</option>
+                                        <option>UI/UX Experience Lab</option>
+                                        <option>WordPress Innovation</option>
+                                        <option>E-commerce Growth Engine</option>
+                                        <option>SEO Digital Growth</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="font-orbitron text-xs text-electricBlue">PROJECT DESCRIPTION</label>
+                                <textarea rows="4" required placeholder="Describe your project vision..." class="w-full bg-spaceBlack/80 border border-electricBlue/30 rounded-xl px-4 py-3 text-sm text-pureWhite focus:outline-none focus:border-electricBlue"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl font-orbitron font-bold text-sm bg-electricBlue text-spaceBlack shadow-neon hover:shadow-[0_0_40px_rgba(0,229,255,0.8)] transition-all duration-300">
+                                TRANSMIT MESSAGE <i class="fa-solid fa-satellite-dish ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info & Holographic Globe -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div class="glass-panel p-8 rounded-3xl border border-electricBlue/20 space-y-6">
+                            <h3 class="font-orbitron font-bold text-xl text-white">Direct Channels</h3>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 flex items-center justify-center text-electricBlue text-lg shadow-neon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-gray-400 font-orbitron">EMAIL TRANSMISSION</div>
+                                    <div class="font-medium text-white">contact@ronakwebhub.com</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-neonPurple/10 flex items-center justify-center text-neonPurple text-lg shadow-neon-purple">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-gray-400 font-orbitron">INSTAGRAM HOLOGRAPH</div>
+                                    <div class="font-medium text-white">@ronakwebhub</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-electricBlue/10 flex items-center justify-center text-electricBlue text-lg shadow-neon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-gray-400 font-orbitron">GLOBAL LOCATION</div>
+                                    <div class="font-medium text-white">Digital Space / Worldwide</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Holographic Indicator -->
+                        <div class="glass-panel p-6 rounded-3xl border border-electricBlue/20 text-center space-y-4">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-electricBlue/10 flex items-center justify-center text-electricBlue text-2xl animate-spin-slow shadow-neon">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div class="font-orbitron font-bold text-sm text-electricBlue">AI COMMUNICATION INTERFACE ONLINE</div>
+                            <p class="text-xs text-gray-400">Response time is currently under 2 hours across all global nodes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER DESIGN -->
+    <footer class="border-t border-electricBlue/20 bg-midnightNavy/80 pt-16 pb-12 px-4 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <!-- Brand Info -->
+            <div class="space-y-4 md:col-span-1">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-electricBlue to-neonPurple p-0.5 flex items-center justify-center shadow-neon">
+                        <div class="w-full h-full bg-spaceBlack rounded-[10px] flex items-center justify-center">
+                            <span class="font-orbitron font-black text-electricBlue text-lg">R</span>
+                        </div>
+                    </div>
+                    <span class="font-orbitron font-extrabold tracking-wider text-lg text-white">RONAKWEBHUB</span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Building modern websites & digital experiences through advanced AI technology and futuristic design systems.
+                </p>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="space-y-4">
+                <h4 class="font-orbitron font-bold text-sm text-electricBlue">NAVIGATION</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#home" class="hover:text-electricBlue transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-electricBlue transition-colors">About</a></li>
+                    <li><a href="#services" class="hover:text-electricBlue transition-colors">Services</a></li>
+                    <li><a href="#portfolio" class="hover:text-electricBlue transition-colors">Portfolio</a></li>
+                    <li><a href="#blog" class="hover:text-electricBlue transition-colors">Blog</a></li>
+                    <li><a href="#contact" class="hover:text-electricBlue transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Links -->
+            <div class="space-y-4">
+                <h4 class="font-orbitron font-bold text-sm text-electricBlue">SOCIAL NEXUS</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="https://instagram.com/ronakwebhub" target="_blank" class="hover:text-electricBlue transition-colors flex items-center space-x-2"><i class="fa-brands fa-instagram text-neonPurple"></i> <span>@ronakwebhub</span></a></li>
+                    <li><a href="#contact" class="hover:text-electricBlue transition-colors flex items-center space-x-2"><i class="fa-brands fa-linkedin text-electricBlue"></i> <span>LinkedIn</span></a></li>
+                    <li><a href="#contact" class="hover:text-electricBlue transition-colors flex items-center space-x-2"><i class="fa-brands fa-github text-pureWhite"></i> <span>GitHub</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter / System Status -->
+            <div class="space-y-4">
+                <h4 class="font-orbitron font-bold text-sm text-electricBlue">SYSTEM STATUS</h4>
+                <div class="glass-panel p-4 rounded-xl border border-electricBlue/20 space-y-2">
+                    <div class="flex items-center space-x-2 text-xs font-mono text-green-400">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        <span>ALL SERVERS OPERATIONAL</span>
+                    </div>
+                    <div class="text-[11px] text-gray-400">AI Neural Engine v3.0 active worldwide.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-electricBlue/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-mono">
+            <p>© 2026 RonakWebHub. All Rights Reserved.</p>
+            
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Loader Simulation
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const loaderBar = document.getElementById('loader-bar');
+            loaderBar.style.width = '100%';
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Custom Cursor Movement
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.transform = `translate(${posX - 6}px, ${posY - 6}px)`;
+            cursorRing.style.transform = `translate(${posX - 20}px, ${posY - 20}px)`;
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            });
+        });
+    </script>
+</body>
+</html>
